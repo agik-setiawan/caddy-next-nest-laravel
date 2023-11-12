@@ -3,9 +3,9 @@ services:
 
   laravel_app:
     build: laravel
-    working_dir: /usr/src/app
+    working_dir: /var/www
     volumes:
-      - ./laravel:/usr/src/app
+      - ./laravel:/var/www
     ports:
       - 8000:8000
     environment:
@@ -47,7 +47,7 @@ services:
       # - "3001:3001"
       - "443:443"
     volumes:
-      - ./laravel:/app/laravel
+      - ./laravel:/var/www
       - ./caddy_data:/data
       - ./caddy_config:/config
       - ./Caddyfile:/etc/caddy/Caddyfile

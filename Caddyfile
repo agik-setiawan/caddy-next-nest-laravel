@@ -1,5 +1,5 @@
 laravel.shinobi.my.id {
-  root * /usr/src/app/public
+  root * /var/www/public
   log
   encode gzip
   php_fastcgi laravel_app:9000

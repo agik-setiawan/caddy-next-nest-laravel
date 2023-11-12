@@ -1,3 +1,13 @@
+laravel.shinobi.my.id {
+  root * /app/laravel/public
+  log
+  encode gzip
+  php_fastcgi laravel_app:9000 {
+          root /usr/src/app/public
+  }
+  file_server
+}
+
 nestjs.shinobi.my.id {
   reverse_proxy nestjs_app:3000  {
     header_down Strict-Transport-Security max-age=31536000;

@@ -1,26 +1,26 @@
 version: '3.9'
 services:
 
-  laravel_app:
-    build: laravel
-    working_dir: /usr/src/app
-    volumes:
-      - ./laravel:/usr/src/app
-    ports:
-      - 8000:8000
-    environment:
-      - NODE_ENV=development
-      - TZ=Asia/Jakarta
-      - NODE_OPTIONS=--max-old-space-size=8192
-    command: bash -c "composer install && php artisan serve"
+  # laravel_app:
+  #   build: laravel
+  #   working_dir: /usr/src/app
+  #   volumes:
+  #     - ./laravel:/usr/src/app
+  #   ports:
+  #     - 8000:8000
+  #   environment:
+  #     - NODE_ENV=development
+  #     - TZ=Asia/Jakarta
+  #     - NODE_OPTIONS=--max-old-space-size=8192
+  #   command: bash -c "composer install && php artisan serve"
 
   nestjs_app:
     build: nestjs
     working_dir: /var/www
     volumes:
       - ./nestjs:/var/www
-    ports:
-      - 3001:3000
+    # ports:
+    #   - 3001:3000
     environment:
       - TZ=Asia/Jakarta
       - NODE_OPTIONS=--max-old-space-size=8192
@@ -34,27 +34,27 @@ services:
     environment:
       - TZ=Asia/Jakarta
       - NODE_OPTIONS=--max-old-space-size=8192
-    ports:
-      - 3000:3000
+    # ports:
+    #   - 3000:3000
     command: bash -c "yarn && yarn build && yarn start"
 
-  # caddy:
-  #   image: caddy/caddy:2.2.1-alpine
-  #   # restart: unless-stopped
-  #   ports:
-  #     # - "80:80"
-  #     # - "3000:3000"
-  #     # - "3001:3001"
-  #     # - "443:443"
-  #   volumes:
-  #     - ./laravel:/app/laravel
-  #     - ./caddy_data:/data
-  #     - ./caddy_config:/config
-  #     - ./Caddyfile:/etc/caddy/Caddyfile
-  #   depends_on:
-  #     - laravel_app
-  #     - nestjs_app
-  #     - nextjs_app
+  caddy:
+    image: caddy/caddy:2.2.1-alpine
+    # restart: unless-stopped
+    ports:
+      - "80:80"
+      # - "3000:3000"
+      # - "3001:3001"
+      # - "443:443"
+    volumes:
+      - ./laravel:/app/laravel
+      - ./caddy_data:/data
+      - ./caddy_config:/config
+      - ./Caddyfile:/etc/caddy/Caddyfile
+    depends_on:
+      # - laravel_app
+      - nestjs_app
+      - nextjs_app
 
 volumes:
   caddy_data:

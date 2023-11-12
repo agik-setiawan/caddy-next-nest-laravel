@@ -1,23 +1,10 @@
-http://localhost:80 {
-  tls internal
-  root * /app/laravel/public
-  log
-  encode gzip
-  php_fastcgi laravel_app:9000 {
-          root /usr/src/app/public
-  }
-  file_server
-}
-
-http://localhost:3000 {
-  tls internal
+nestjs.shinobi.my.id {
   reverse_proxy nestjs_app:3000  {
     header_down Strict-Transport-Security max-age=31536000;
   }
 }
 
-http://localhost:3001 {
-  tls internal
+nextjs.shinobi.my.id {
   reverse_proxy nextjs_app:3000  {
     header_down Strict-Transport-Security max-age=31536000;
   }

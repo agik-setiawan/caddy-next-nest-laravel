@@ -38,7 +38,7 @@ services:
     #   - 3000:3000
     command: bash -c "yarn && yarn build && yarn start"
 
-  caddy:
+  webserver:
     image: caddy/caddy:2.2.1-alpine
     # restart: unless-stopped
     ports:

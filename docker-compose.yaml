@@ -12,7 +12,7 @@ services:
       - NODE_ENV=development
       - TZ=Asia/Jakarta
       - NODE_OPTIONS=--max-old-space-size=8192
-    command: bash -c "composer install && php artisan key:generate"
+    command: bash -c "composer install && php artisan key:generate && php artisan serve --host=0.0.0.0 --port=8000"
 
   nestjs_app:
     build: nestjs
